@@ -1,8 +1,10 @@
 ﻿using CS5227_A1_LIAWJ47006.Areas.Identity.Data;
+using CS5227_A1_LIAWJ47006.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CS5227_A1_LIAWJ47006.Areas.Identity.Data;
 
@@ -12,6 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
+
+    public DbSet<Menu> Menus { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
