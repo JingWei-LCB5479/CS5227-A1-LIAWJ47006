@@ -19,6 +19,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+        var admin = new IdentityRole("admin");
+        admin.NormalizedName = "admin";
+
+        var client =  new IdentityRole("client");
+        client.NormalizedName = "client";
+
+        var seller = new IdentityRole("seller");
+        seller.NormalizedName = "seller";
+
+        builder.Entity<IdentityRole>().HasData(admin, client, seller);
+
         builder.ApplyConfiguration(new ApplicationUserConfiguration());
     }
 }
