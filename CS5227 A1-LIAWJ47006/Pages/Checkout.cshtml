@@ -1,0 +1,49 @@
+﻿@page
+@model CS5227_A1_LIAWJ47006.Pages.CheckoutModel
+
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>Checkout</h1>
+
+    @if (Model.CartItems.Count == 0)
+    {
+        <div class="alert alert-info">
+            Your cart is empty. <a asp-page="/Menu">Continue shopping</a>
+        </div>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price:C</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2">Total</th>
+                    <th>@Model.TotalPrice:C</th>
+                </tr>
+            </tfoot>
+        </table>
+        <form method="post" asp-page-handler="Purchase">
+            <button type="submit" class="btn btn-success">Complete Purchase</button>
+        </form>
+    }
+</div>

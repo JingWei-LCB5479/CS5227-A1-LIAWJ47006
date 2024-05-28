@@ -1,0 +1,57 @@
+﻿@page
+@model CS5227_A1_LIAWJ47006.Pages.ContactModel
+
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>Contact Us</h1>
+
+    @if (!string.IsNullOrEmpty(Model.ResultMessage))
+    {
+        <div class="alert alert-info">@Model.ResultMessage</div>
+    }
+
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Contact.Name"></label>
+            <input asp-for="Contact.Name" class="form-control" />
+            <span asp-validation-for="Contact.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contact.Email"></label>
+            <input asp-for="Contact.Email" class="form-control" />
+            <span asp-validation-for="Contact.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Contact.Message"></label>
+            <textarea asp-for="Contact.Message" class="form-control"></textarea>
+            <span asp-validation-for="Contact.Message" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<div class="container mt-5">
+    <h2>Our Location</h2>
+    <div id="map" style="height: 400px;"></div>
+</div>
+
+<script>
+    function initMap() {
+        var location = { lat: 4.352215, lng: 15.322222 }; // Replace with your desired coordinates
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: location
+        });
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+    }
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>

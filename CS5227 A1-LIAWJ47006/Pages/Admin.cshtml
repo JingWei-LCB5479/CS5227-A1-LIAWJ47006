@@ -1,6 +1,40 @@
 ﻿@page
-@model CS5227_A1_LIAWJ47006.Pages.AdminModel
+@model CS5227_A1_LIAWJ47006.Pages.Admin.AdminModel
+
 @{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "_Layout";
 }
 
-<h2 class="text-center">Welcome Admin</h2>
+<div class="container">
+    <h1>Admin Panel</h1>
+    <p>
+        <a asp-page="/Admin/Create" class="btn btn-primary">Add New Menu Item</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var menu in Model.Menus)
+            {
+                <tr>
+                    <td>@menu.Name</td>
+                    <td>@menu.Description</td>
+                    <td>@menu.Price:C</td>
+                    <td>
+                        <a asp-page="/Admin/Edit" asp-route-id="@menu.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <form method="post" asp-page-handler="Delete" asp-route-id="@menu.Id" style="display:inline;">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

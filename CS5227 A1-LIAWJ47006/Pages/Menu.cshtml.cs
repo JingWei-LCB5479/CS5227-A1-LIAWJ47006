@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CS5227_A1_LIAWJ47006.Pages
 {
-    public class IndexModel : PageModel
+    public class MenuModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public IndexModel(ApplicationDbContext context)
+        public MenuModel(ApplicationDbContext context)
         {
             _context = context;
         }

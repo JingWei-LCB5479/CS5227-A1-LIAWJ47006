@@ -4,6 +4,7 @@ using CS5227_A1_LIAWJ47006.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS5227_A1_LIAWJ47006.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240528042520_AppToDB")]
+    partial class AppToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,9 +109,6 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -149,19 +149,19 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "14e4db49-9103-4a84-8cd3-c26655043b0b",
+                            Id = "dffc5b49-b2b5-4ffb-bdb5-ee3847737eac",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "2973388c-0e4e-4fa2-90fb-25d7cd82a78b",
+                            Id = "966e74ac-20e7-445f-942a-07e46a747ca1",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "36194476-8e34-4a46-8e63-4de3633808bd",
+                            Id = "43543229-0f04-4f92-8f63-3902c506184c",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
