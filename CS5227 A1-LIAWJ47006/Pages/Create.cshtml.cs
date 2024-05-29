@@ -51,7 +51,8 @@ namespace CS5227_A1_LIAWJ47006.Pages.Admin
                 Name = MenuViewModel.Name,
                 Description = MenuViewModel.Description,
                 Price = MenuViewModel.Price,
-                ImageUrl = fileName // Save the file name
+                ImageUrl = fileName,
+                Category = MenuViewModel.Category // Add this assignment
             };
 
             _context.Menus.Add(menu);

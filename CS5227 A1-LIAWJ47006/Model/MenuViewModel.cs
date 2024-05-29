@@ -15,5 +15,7 @@ namespace CS5227_A1_LIAWJ47006.Model
         public float Price { get; set; }
 
         public IFormFile Image { get; set; }
+
+        public string Category { get; set; }
     }
 }

@@ -18,40 +18,21 @@ namespace CS5227_A1_LIAWJ47006.Pages
             _context = context;
         }
 
-        public IList<Menu> Menus { get; set; }
+        public IList<Menu> Appetizers { get; set; }
+        public IList<Menu> MainCourses { get; set; }
+        public IList<Menu> SideDishes { get; set; }
+        public IList<Menu> Desserts { get; set; }
+        public IList<Menu> Beverages { get; set; }
 
         public async Task OnGetAsync()
         {
-            Menus = await _context.Menus.ToListAsync();
+            var allMenus = await _context.Menus.ToListAsync();
 
-            if (Menus == null || !Menus.Any())
-            {
-                ModelState.AddModelError(string.Empty, "No menu items found.");
-            }
-        }
-
-        public async Task<IActionResult> OnPostAddToCartAsync(int id)
-        {
-            var menuItem = await _context.Menus.FindAsync(id);
-            if (menuItem == null)
-            {
-                return NotFound();
-            }
-
-            List<int> cart;
-            if (HttpContext.Session.GetObject<List<int>>("Cart") == null)
-            {
-                cart = new List<int>();
-            }
-            else
-            {
-                cart = HttpContext.Session.GetObject<List<int>>("Cart");
-            }
-
-            cart.Add(menuItem.Id);
-            HttpContext.Session.SetObject("Cart", cart);
-
-            return RedirectToPage();
+            Appetizers = allMenus.Where(m => m.Category == "Appetizers").ToList();
+            MainCourses = allMenus.Where(m => m.Category == "Main Courses").ToList();
+            SideDishes = allMenus.Where(m => m.Category == "Side Dishes").ToList();
+            Desserts = allMenus.Where(m => m.Category == "Desserts").ToList();
+            Beverages = allMenus.Where(m => m.Category == "Beverages").ToList();
         }
     }
 }
