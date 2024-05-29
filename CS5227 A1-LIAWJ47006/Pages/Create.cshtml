@@ -1,5 +1,6 @@
 ﻿@page
 @model CS5227_A1_LIAWJ47006.Pages.Admin.CreateModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Create Menu Item";
@@ -9,21 +10,26 @@
 <div class="container">
     <h1>Create Menu Item</h1>
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label asp-for="Menu.Name" class="control-label"></label>
-            <input asp-for="Menu.Name" class="form-control" />
-            <span asp-validation-for="Menu.Name" class="text-danger"></span>
+            <label asp-for="MenuViewModel.Name" class="control-label"></label>
+            <input asp-for="MenuViewModel.Name" class="form-control" />
+            <span asp-validation-for="MenuViewModel.Name" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Menu.Description" class="control-label"></label>
-            <textarea asp-for="Menu.Description" class="form-control"></textarea>
-            <span asp-validation-for="Menu.Description" class="text-danger"></span>
+            <label asp-for="MenuViewModel.Description" class="control-label"></label>
+            <textarea asp-for="MenuViewModel.Description" class="form-control"></textarea>
+            <span asp-validation-for="MenuViewModel.Description" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Menu.Price" class="control-label"></label>
-            <input asp-for="Menu.Price" class="form-control" />
-            <span asp-validation-for="Menu.Price" class="text-danger"></span>
+            <label asp-for="MenuViewModel.Price" class="control-label"></label>
+            <input asp-for="MenuViewModel.Price" class="form-control" />
+            <span asp-validation-for="MenuViewModel.Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="MenuViewModel.Image" class="control-label"></label>
+            <input asp-for="MenuViewModel.Image" type="file" class="form-control" />
+            <span asp-validation-for="MenuViewModel.Image" class="text-danger"></span>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Save</button>

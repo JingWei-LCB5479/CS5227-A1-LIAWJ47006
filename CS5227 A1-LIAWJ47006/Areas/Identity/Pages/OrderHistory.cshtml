@@ -1,0 +1,34 @@
+﻿@page
+@model CS5227_A1_LIAWJ47006.Pages.OrderHistoryModel
+
+@{
+    ViewData["Title"] = "Order History";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <h1>Order History</h1>
+    <div>
+        @foreach (var order in Model.Orders)
+        {
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Order ID: @order.OrderId</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Order Date: @order.OrderDate</h6>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <li class="list-group-item">
+                                <h5>@item.Menu.Name</h5>
+                                <p>@item.Menu.Description</p>
+                                <p>Price: @item.Menu.Price:C</p>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    </div>
+</div>

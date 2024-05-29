@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CS5227_A1_LIAWJ47006.Areas.Identity.Data;
 using CS5227_A1_LIAWJ47006.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,10 +16,12 @@ namespace CS5227_A1_LIAWJ47006.Pages
     public class CheckoutModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CheckoutModel(ApplicationDbContext context)
+        public CheckoutModel(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<Menu> CartItems { get; set; }
@@ -25,21 +29,32 @@ namespace CS5227_A1_LIAWJ47006.Pages
 
         public async Task OnGetAsync()
         {
-            // For demonstration, let's assume the cart items are fetched from the database
-            // This would normally be managed by session or user-specific cart in the database
-            CartItems = await _context.Menus.ToListAsync();
+            List<int> cart = HttpContext.Session.GetObject<List<int>>("Cart") ?? new List<int>();
+            CartItems = await _context.Menus.Where(m => cart.Contains(m.Id)).ToListAsync();
             TotalPrice = CartItems.Sum(item => (decimal)item.Price);
         }
 
         public async Task<IActionResult> OnPostPurchaseAsync()
         {
-            // Simulate the purchase process (clear the cart and save the transaction)
-            CartItems = await _context.Menus.ToListAsync();
-            _context.Menus.RemoveRange(CartItems); // Clear the cart items
+            var userId = _userManager.GetUserId(User);
+            var order = new Order
+            {
+                UserId = userId,
+                OrderDate = DateTime.Now,
+                OrderItems = new List<OrderItem>()
+            };
+
+            List<int> cart = HttpContext.Session.GetObject<List<int>>("Cart") ?? new List<int>();
+            foreach (var menuId in cart)
+            {
+                order.OrderItems.Add(new OrderItem { MenuId = menuId });
+            }
+
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            // Simulate saving a purchase history
-            // For simplicity, this step is not fully implemented
+            // Clear the session cart
+            HttpContext.Session.Remove("Cart");
 
             return RedirectToPage("/Index");
         }
