@@ -3,73 +3,64 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Savanna Bites</title>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/style.css" />
+    <title>@ViewData["Title"] - CS5227_A1_LIAWJ47006</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        /* Add custom styles here */
+    </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logoContent">
-            <a href="/" class="logo"><img src="~/images/logo.png" alt="Savanna Bites"></a>
-            <h1 class="logoName">Savanna Bites</h1>
-        </div>
-        <nav class="navbar">
-            <a asp-page="/Index">Home</a>
-            <a asp-page="/Menu">Menu</a>
-            <a asp-page="/Contact">Contact</a>
-            <a asp-page="/Review">Review</a>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-custom">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">Savanna Bites</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Menu">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Contact/Contact">Contact Us!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <a asp-page="/Cart" class="navbar-brand navbar-cart">
+                            <img src="~/img/cart_logo.png" alt="Cart" />
+                        </a>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
         </nav>
-        <div class="icon">
-            <i class="fas fa-search" id="search"></i>
-            <i class="fas fa-bars" id="menu-bar"></i>
-        </div>
-        <div class="search">
-            <input type="search" placeholder="search...">
-        </div>
     </header>
-
     <div class="container">
-        @RenderBody()
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
-    <footer class="footer" id="contact">
-        <div class="box-container">
-            <div class="mainBox">
-                <div class="content">
-                    <a href="#"><img src="~/images/logo.png" alt="Savanna Bites"></a>
-                    <h1 class="logoName">Savanna Bites</h1>
-                </div>
-                <p>Delicious Ugandan cuisine with Brunei pricing. Come and enjoy!</p>
-            </div>
-            <div class="box">
-                <h3>Quick Links</h3>
-                <a href="#"> <i class="fas fa-arrow-right"></i>Home</a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>Menu</a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>Contact</a>
-                <a href="#"> <i class="fas fa-arrow-right"></i>Review</a>
-            </div>
-            <div class="box">
-                <h3>Contact Info</h3>
-                <a href="#"> <i class="fas fa-phone"></i> +673 123 4567</a>
-                <a href="#"> <i class="fas fa-envelope"></i> info@savannabites.com</a>
-            </div>
-        </div>
-        <div class="share">
-            <a href="#" class="fab fa-facebook-f"></a>
-            <a href="#" class="fab fa-twitter"></a>
-            <a href="#" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-linkedin"></a>
-            <a href="#" class="fab fa-pinterest"></a>
-        </div>
-        <div class="credit">
-            created by <span>Your Name</span> | all rights reserved
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - Savanna Bites - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <a id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a id="login" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="~/js/site.js"></script>
-    <script src="~/js/index.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
