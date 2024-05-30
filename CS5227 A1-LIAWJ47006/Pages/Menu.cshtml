@@ -22,8 +22,11 @@
                     <div class="product-content">
                         <h3>@menu.Name</h3>
                         <p>@menu.Description</p>
+                        <p>Price: @menu.Price.ToString("C")</p> <!-- Display the price here -->
                         <div class="orderNow">
-                            <button>Add to Cart</button>
+                            <form method="post" asp-page-handler="AddToCart" asp-route-id="@menu.Id">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -44,8 +47,11 @@
                     <div class="product-content">
                         <h3>@menu.Name</h3>
                         <p>@menu.Description</p>
+                        <p>Price: @menu.Price.ToString("C")</p> <!-- Display the price here -->
                         <div class="orderNow">
-                            <button>Add to Cart</button>
+                            <form method="post" asp-page-handler="AddToCart" asp-route-id="@menu.Id">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -66,8 +72,11 @@
                     <div class="product-content">
                         <h3>@menu.Name</h3>
                         <p>@menu.Description</p>
+                        <p>Price: @menu.Price.ToString("C")</p> <!-- Display the price here -->
                         <div class="orderNow">
-                            <button>Add to Cart</button>
+                            <form method="post" asp-page-handler="AddToCart" asp-route-id="@menu.Id">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -88,8 +97,11 @@
                     <div class="product-content">
                         <h3>@menu.Name</h3>
                         <p>@menu.Description</p>
+                        <p>Price: @menu.Price.ToString("C")</p> <!-- Display the price here -->
                         <div class="orderNow">
-                            <button>Add to Cart</button>
+                            <form method="post" asp-page-handler="AddToCart" asp-route-id="@menu.Id">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -110,8 +122,11 @@
                     <div class="product-content">
                         <h3>@menu.Name</h3>
                         <p>@menu.Description</p>
+                        <p>Price: @menu.Price.ToString("C")</p> <!-- Display the price here -->
                         <div class="orderNow">
-                            <button>Add to Cart</button>
+                            <form method="post" asp-page-handler="AddToCart" asp-route-id="@menu.Id">
+                                <button type="submit" class="btn btn-primary">Add to Cart</button>
+                            </form>
                         </div>
                     </div>
                 </div>

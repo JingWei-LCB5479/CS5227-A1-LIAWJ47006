@@ -4,6 +4,7 @@ using CS5227_A1_LIAWJ47006.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS5227_A1_LIAWJ47006.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530160301_updatecart2todb")]
+    partial class updatecart2todb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,51 +148,6 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.ToTable("CartItems");
                 });
 
-            modelBuilder.Entity("CS5227_A1_LIAWJ47006.Model.Checkout", b =>
-                {
-                    b.Property<int>("CheckoutId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CheckoutId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CVV")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExpiryDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CheckoutId");
-
-                    b.ToTable("Checkouts");
-                });
-
             modelBuilder.Entity("CS5227_A1_LIAWJ47006.Model.Menu", b =>
                 {
                     b.Property<int>("Id")
@@ -290,19 +248,19 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "678b97fa-91c4-4107-ba89-87ab49d73a78",
+                            Id = "23c384e3-ba0a-48d1-8506-2c22c7d4354e",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "5763d70c-b3ff-43e3-ab56-12bd7a562e25",
+                            Id = "0ebf9a1d-5a69-4035-9620-04d5374c345e",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "2b447615-eec2-462f-a6ff-d7d6f1ebaea0",
+                            Id = "cbad5f8c-d33f-4d9e-9e2a-8c5eb02b3c38",
                             Name = "seller",
                             NormalizedName = "seller"
                         });

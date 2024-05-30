@@ -28,18 +28,19 @@
                             <a class="nav-link" asp-area="" asp-page="/Menu">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Contact/Contact">Contact Us!</a>
+                            <a class="nav-link" asp-area="" asp-page="/Contact/Contact">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <a asp-page="/Cart" class="navbar-brand navbar-cart">
-                            <img src="~/img/cart_logo.png" alt="Cart" />
+                        <a asp-page="/Cart" class="nav-link navbar-cart">
+                            <img src="~/images/cart.png" alt="Cart" />
                         </a>
                         <partial name="_LoginPartial" />
                     </div>
+
                 </div>
             </div>
         </nav>

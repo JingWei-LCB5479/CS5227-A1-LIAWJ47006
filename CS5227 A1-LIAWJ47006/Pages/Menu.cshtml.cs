@@ -34,5 +34,48 @@ namespace CS5227_A1_LIAWJ47006.Pages
             Desserts = allMenus.Where(m => m.Category == "Desserts").ToList();
             Beverages = allMenus.Where(m => m.Category == "Beverages").ToList();
         }
+
+        public async Task<IActionResult> OnPostAddToCartAsync(int id)
+        {
+            var menu = await _context.Menus.FindAsync(id);
+            if (menu == null)
+            {
+                return NotFound();
+            }
+
+            var userId = User.Identity.Name; // Assume user is authenticated
+            var cart = await _context.Carts.Include(c => c.CartItems).FirstOrDefaultAsync(c => c.UserId == userId);
+
+            if (cart == null)
+            {
+                cart = new Cart
+                {
+                    UserId = userId,
+                    CartItems = new List<CartItem>()
+                };
+                _context.Carts.Add(cart);
+            }
+
+            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.MenuId == id);
+            if (cartItem != null)
+            {
+                cartItem.Quantity++;
+            }
+            else
+            {
+                cartItem = new CartItem
+                {
+                    MenuId = id,
+                    Menu = menu,
+                    Price = menu.Price, // Assume Menu has a Price property
+                    Quantity = 1,
+                    ImageUrl = menu.ImageUrl // Set ImageUrl here
+                };
+                cart.CartItems.Add(cartItem);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage();
+        }
     }
 }

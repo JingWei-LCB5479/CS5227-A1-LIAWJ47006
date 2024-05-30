@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Pages\Admin\" />
+    <Folder Include="Pages\Cart\" />
   </ItemGroup>
 
 </Project>

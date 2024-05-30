@@ -9,19 +9,16 @@ using System.Threading.Tasks;
 
 namespace CS5227_A1_LIAWJ47006.Pages
 {
-    public class CheckoutModel : PageModel
+    public class CartModel : PageModel
     {
         private readonly ApplicationDbContext _context;
 
-        public CheckoutModel(ApplicationDbContext context)
+        public CartModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<CartItem> CartItems { get; set; } = new List<CartItem>();
-
-        [BindProperty]
-        public Checkout Checkout { get; set; } = new Checkout();
+        public IList<CartItem> CartItems { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -43,7 +40,41 @@ namespace CS5227_A1_LIAWJ47006.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostProcessOrderAsync()
+        public async Task<IActionResult> OnPostUpdateQuantityAsync(int id, string operation)
+        {
+            var cartItem = await _context.CartItems.FindAsync(id);
+
+            if (cartItem != null)
+            {
+                if (operation == "increase")
+                {
+                    cartItem.Quantity++;
+                }
+                else if (operation == "decrease" && cartItem.Quantity > 1)
+                {
+                    cartItem.Quantity--;
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostRemoveItemAsync(int id)
+        {
+            var cartItem = await _context.CartItems.FindAsync(id);
+
+            if (cartItem != null)
+            {
+                _context.CartItems.Remove(cartItem);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostCheckoutAsync()
         {
             var userId = User.Identity.Name; // Assume user is authenticated
             var cart = await _context.Carts
@@ -53,19 +84,8 @@ namespace CS5227_A1_LIAWJ47006.Pages
 
             if (cart != null)
             {
-                // Here you would process the payment and create the order
-                // For simplicity, this example will just save the checkout details and clear the cart
-
-                // Save checkout details
-                _context.Add(Checkout);
-                await _context.SaveChangesAsync();
-
-                // Clear the cart
-                _context.CartItems.RemoveRange(cart.CartItems);
-                _context.Carts.Remove(cart);
-                await _context.SaveChangesAsync();
-
-                return RedirectToPage("/OrderConfirmation");
+                // Redirect to the Checkout page
+                return RedirectToPage("/Checkout");
             }
 
             return Page();

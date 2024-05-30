@@ -33,7 +33,7 @@
                     </td>
                     <td>@menu.Name</td>
                     <td>@menu.Description</td>
-                    <td>@menu.Price:C</td>
+                    <td>$@menu.Price</td>
                     <td>
                         <a asp-page="/Admin/Edit" asp-route-id="@menu.Id" class="btn btn-sm btn-warning">Edit</a>
                         <form method="post" asp-page-handler="Delete" asp-route-id="@menu.Id" style="display:inline;">

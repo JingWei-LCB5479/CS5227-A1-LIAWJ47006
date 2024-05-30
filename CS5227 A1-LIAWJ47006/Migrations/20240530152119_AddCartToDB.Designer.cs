@@ -4,6 +4,7 @@ using CS5227_A1_LIAWJ47006.Areas.Identity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CS5227_A1_LIAWJ47006.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240530152119_AddCartToDB")]
+    partial class AddCartToDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,15 +126,8 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.Property<int>("CartId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("MenuId")
                         .HasColumnType("int");
-
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -143,51 +139,6 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.HasIndex("MenuId");
 
                     b.ToTable("CartItems");
-                });
-
-            modelBuilder.Entity("CS5227_A1_LIAWJ47006.Model.Checkout", b =>
-                {
-                    b.Property<int>("CheckoutId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CheckoutId"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CVV")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CardNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ExpiryDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PaymentMethod")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CheckoutId");
-
-                    b.ToTable("Checkouts");
                 });
 
             modelBuilder.Entity("CS5227_A1_LIAWJ47006.Model.Menu", b =>
@@ -290,19 +241,19 @@ namespace CS5227_A1_LIAWJ47006.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "678b97fa-91c4-4107-ba89-87ab49d73a78",
+                            Id = "a763a786-7821-4dc2-abe6-f5bac0be7083",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "5763d70c-b3ff-43e3-ab56-12bd7a562e25",
+                            Id = "b3a7609b-b317-4297-901b-20fba3a40863",
                             Name = "client",
                             NormalizedName = "client"
                         },
                         new
                         {
-                            Id = "2b447615-eec2-462f-a6ff-d7d6f1ebaea0",
+                            Id = "b7f9e8f1-0b51-4bcb-a0bb-303f75713b1d",
                             Name = "seller",
                             NormalizedName = "seller"
                         });
