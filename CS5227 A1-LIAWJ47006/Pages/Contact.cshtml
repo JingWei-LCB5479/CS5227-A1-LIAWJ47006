@@ -1,57 +1,40 @@
 ﻿@page
 @model CS5227_A1_LIAWJ47006.Pages.ContactModel
-
 @{
     ViewData["Title"] = "Contact";
-    Layout = "_Layout";
 }
 
-<div class="container">
-    <h1>Contact Us</h1>
+<h2>Contact</h2>
 
-    @if (!string.IsNullOrEmpty(Model.ResultMessage))
-    {
-        <div class="alert alert-info">@Model.ResultMessage</div>
-    }
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Message"]
+    </div>
+}
 
-    <form method="post">
-        <div class="form-group">
-            <label asp-for="Contact.Name"></label>
-            <input asp-for="Contact.Name" class="form-control" />
-            <span asp-validation-for="Contact.Name" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Contact.Email"></label>
-            <input asp-for="Contact.Email" class="form-control" />
-            <span asp-validation-for="Contact.Email" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Contact.Message"></label>
-            <textarea asp-for="Contact.Message" class="form-control"></textarea>
-            <span asp-validation-for="Contact.Message" class="text-danger"></span>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Contact.Name" class="control-label"></label>
+        <input asp-for="Contact.Name" class="form-control" />
+        <span asp-validation-for="Contact.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Contact.Email" class="control-label"></label>
+        <input asp-for="Contact.Email" class="form-control" />
+        <span asp-validation-for="Contact.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Contact.Message" class="control-label"></label>
+        <textarea asp-for="Contact.Message" class="form-control"></textarea>
+        <span asp-validation-for="Contact.Message" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
 
-<div class="container mt-5">
-    <h2>Our Location</h2>
-    <div id="map" style="height: 400px;"></div>
-</div>
+<h3>Our Location</h3>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15901.285864535696!2d114.9316692!3d4.8857309!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x32228ac8ee3f7d03%3A0xcacd96016959ec39!2sLaksamana%20College%20of%20Business!5e0!3m2!1sen!2sbn!4v1717131077015!5m2!1sen!2sbn" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-<script>
-    function initMap() {
-        var location = { lat: 4.352215, lng: 15.322222 }; // Replace with your desired coordinates
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
-            center: location
-        });
-        var marker = new google.maps.Marker({
-            position: location,
-            map: map
-        });
-    }
-</script>
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-</script>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

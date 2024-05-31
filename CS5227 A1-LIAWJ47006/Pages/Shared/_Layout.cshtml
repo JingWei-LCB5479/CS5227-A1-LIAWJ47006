@@ -28,7 +28,7 @@
                             <a class="nav-link" asp-area="" asp-page="/Menu">Menu</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-page="/Contact/Contact">Contact</a>
+                            <a class="nav-link" asp-area="" asp-page="/Contact">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-page="/Admin/Admin">Admin</a>
@@ -40,7 +40,6 @@
                         </a>
                         <partial name="_LoginPartial" />
                     </div>
-
                 </div>
             </div>
         </nav>
@@ -61,6 +60,8 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
