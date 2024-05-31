@@ -1,5 +1,5 @@
 ﻿@page
-@model LoginModel
+@model CS5227_A1_LIAWJ47006.Pages.Account.LoginModel
 @{
     ViewData["Title"] = "Log in";
     Layout = "_Layout";
@@ -7,6 +7,12 @@
 
 <h2>@ViewData["Title"]</h2>
 <hr />
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
 <div class="row">
     <div class="col-md-4">
         <section>

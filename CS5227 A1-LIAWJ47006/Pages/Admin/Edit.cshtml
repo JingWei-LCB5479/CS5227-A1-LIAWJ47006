@@ -1,6 +1,5 @@
 ﻿@page
-@model EditModel
-
+@model CS5227_A1_LIAWJ47006.Pages.Admin.EditModel
 @{
     ViewData["Title"] = "Edit Menu Item";
     Layout = "_Layout";
@@ -10,6 +9,7 @@
     <h1>Edit Menu Item</h1>
 
     <form method="post">
+        <input type="hidden" asp-for="Menu.Id" />
         <div class="form-group">
             <label asp-for="Menu.Name" class="control-label"></label>
             <input asp-for="Menu.Name" class="form-control" />

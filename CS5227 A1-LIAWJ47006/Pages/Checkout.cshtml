@@ -1,5 +1,5 @@
 ﻿@page
-@model CS5227_A1_LIAWJ47006.Pages.CheckoutModel
+@model CheckoutModel
 
 @{
     ViewData["Title"] = "Checkout";
@@ -29,7 +29,7 @@ else
                     <td>@item.Menu.Name</td>
                     <td>@item.Quantity</td>
                     <td>@item.Price.ToString("C")</td>
-                    <td>@(item.Price * item.Quantity).ToString("C")</td>
+                    <td>$@(item.Price * item.Quantity)</td>
                 </tr>
             }
         </tbody>

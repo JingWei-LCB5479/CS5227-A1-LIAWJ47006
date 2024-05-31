@@ -39,7 +39,16 @@ namespace CS5227_A1_LIAWJ47006.Pages.Admin
                 return Page();
             }
 
-            _context.Attach(Menu).State = EntityState.Modified;
+            var menuToUpdate = await _context.Menus.FindAsync(Menu.Id);
+            if (menuToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            // Update the properties
+            menuToUpdate.Name = Menu.Name;
+            menuToUpdate.Description = Menu.Description;
+            menuToUpdate.Price = Menu.Price;
 
             try
             {

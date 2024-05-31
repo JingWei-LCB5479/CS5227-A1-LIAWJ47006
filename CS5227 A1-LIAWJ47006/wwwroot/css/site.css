@@ -51,14 +51,13 @@ body {
     text-decoration: none;
 }
 
-    .navbar-cart:hover {
-        color: #000; /* Match the hover color of other nav links */
-    }
+.navbar-cart:hover {
+    color: #000; /* Match the hover color of other nav links */
+}
 
-    .navbar-cart img:hover {
-        filter: brightness(0.8); /* Optional: Add a hover effect to the icon */
-    }
-
+.navbar-cart img:hover {
+    filter: brightness(0.8); /* Optional: Add a hover effect to the icon */
+}
 
 .logo {
     display: flex;
@@ -211,8 +210,6 @@ body {
     margin-top: 20px;
 }
 
-
-
 /* Add styles for the cart page */
 .menu-items {
     display: flex;
@@ -266,3 +263,25 @@ body {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+
+<style >
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black;
+    width: 30px;
+    height: 30px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+</style >

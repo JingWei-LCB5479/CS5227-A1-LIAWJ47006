@@ -25,6 +25,8 @@ namespace CS5227_A1_LIAWJ47006.Pages.Account
 
         public string ReturnUrl { get; set; }
 
+        public string ErrorMessage { get; set; }
+
         public class InputModel
         {
             [Required]
@@ -39,9 +41,13 @@ namespace CS5227_A1_LIAWJ47006.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public void OnGet(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
+            if (TempData.ContainsKey("ErrorMessage"))
+            {
+                ErrorMessage = TempData["ErrorMessage"] as string;
+            }
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

@@ -6,6 +6,7 @@ using CS5227_A1_LIAWJ47006.Model;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CS5227_A1_LIAWJ47006.Pages
 {
@@ -23,6 +24,9 @@ namespace CS5227_A1_LIAWJ47006.Pages
         public IList<Menu> SideDishes { get; set; }
         public IList<Menu> Desserts { get; set; }
         public IList<Menu> Beverages { get; set; }
+        
+        [TempData]
+        public string ErrorMessage { get; set; } // Ensure this property is public and accessible
 
         public async Task OnGetAsync()
         {
@@ -37,6 +41,12 @@ namespace CS5227_A1_LIAWJ47006.Pages
 
         public async Task<IActionResult> OnPostAddToCartAsync(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["ErrorMessage"] = "You need to log in first to add items to the cart.";
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+
             var menu = await _context.Menus.FindAsync(id);
             if (menu == null)
             {
